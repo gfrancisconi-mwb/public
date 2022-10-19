@@ -17,11 +17,7 @@ if [ -z "$1" ]
   then
     echo "Missing Environment"
     echo
-    echo "Usage: ${0} [OPTIONS]"
-    echo
-    echo "OPTIONS:"
-    echo "    --env: Environment (dev, qa, stage, prod)"
-    echo "    --service: Service name"
+    echo "Usage: ${0} [env: dev|aq|stage|prod]"
     exit 1
 fi
 
@@ -61,9 +57,6 @@ then
           --query '[SecretString]' \
           --secret-id /eagle/secrets/${env}/MYSQL_PASSWORD \
           --output text)
-
-      #echo "Master password  --> $MASTER_PWD"
-      #exit
 
       DEVELOPER_PWD=$(aws secretsmanager get-secret-value \
           --query '[SecretString]' \
